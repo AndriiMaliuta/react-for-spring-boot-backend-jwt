@@ -8,6 +8,7 @@ import Header from './common/Header';
 import Footer from './common/Footer';
 import Logout from './Logout';
 import AuthenticatedRoute from './AuthenticatedRoute';
+import Blog from './Blog';
 
 export default class BlogsApp extends Component {
   render() {
@@ -25,6 +26,7 @@ export default class BlogsApp extends Component {
                 component={Welcome}
               />
               <AuthenticatedRoute exact path='/blogs' component={ListBlogs} />
+              <AuthenticatedRoute exact path='/blogs/:id' component={Blog} />
               <Route exact path='/logout' component={Logout} />
               <Route component={Error} />
             </Switch>

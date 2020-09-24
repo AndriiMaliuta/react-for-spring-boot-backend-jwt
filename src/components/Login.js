@@ -17,24 +17,53 @@ export default class Login extends Component {
   };
 
   loginCLicked = () => {
-    if (this.state.username === 'anma' && this.state.password === 'anma') {
-      AuthService.registerSUccessfulLogin(
-        this.state.username,
-        this.state.password
-      );
-      this.props.history.push(`/welcome/${this.state.username}`);
-      this.setState({ loginSuccessful: true });
-      this.setState({ loginFailed: false });
-    } else {
-      this.setState({ loginSuccessful: false });
-      this.setState({ loginFailed: true });
-    }
+    // ====== Hardcoded
+    // if (this.state.username === 'anma' && this.state.password === 'anma') {
+    //   AuthService.registerSUccessfulLogin(
+    //     this.state.username,
+    //     this.state.password
+    //   );
+    //   this.props.history.push(`/welcome/${this.state.username}`);
+    //   this.setState({ loginSuccessful: true });
+    //   this.setState({ loginFailed: false });
+    // } else {
+    //   this.setState({ loginSuccessful: false });
+    //   this.setState({ loginFailed: true });
+    // }
+    // ======== Basic Auth
+    // AuthService.executeBasicAuth(this.state.username, this.state.password)
+    //   .then(() => {
+    //     AuthService.registerSuccessfulLogin(
+    //       this.state.username,
+    //       this.state.password
+    //     );
+    //     this.props.history.push(`/welcome/${this.state.username}`);
+    //   })
+    //   .catch((error) => {
+    //     this.setState({ loginSuccessful: false });
+    //     this.setState({ loginFailed: true });
+    //   });
+
+    AuthService.executeJWTauth(this.state.username, this.state.password)
+      .then((response) => {
+        AuthService.registerSuccessfulLoginForJWT(
+          this.state.username,
+          response.data.jwt
+        );
+        this.props.history.push(`/welcome/${this.state.username}`);
+      })
+      .catch((error) => {
+        this.setState({ loginSuccessful: false });
+        this.setState({ loginFailed: true });
+      });
   };
 
   render() {
     return (
-      <div>
-        {this.state.loginFailed && <div>Invalid Credentials</div>}
+      <div className='custom-main'>
+        {this.state.loginFailed && (
+          <div className='error-message'>Invalid Credentials</div>
+        )}
         User Name:
         <input
           type='text'

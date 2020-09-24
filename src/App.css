@@ -8,3 +8,23 @@
   padding: 10px 5px;
   margin: 7px;
 }
+
+.custom-main {
+  padding: 30px;
+}
+
+.error-message {
+  color: white;
+  background-color: red;
+  width: 150px;
+  padding: 4px;
+  margin: 3px;
+}
+.blog-deleted-msg {
+  color: white;
+  background-color: rgb(55, 185, 55);
+  width: 400px;
+  height: 50px;
+  border-radius: 7px;
+  text-align: center;
+}

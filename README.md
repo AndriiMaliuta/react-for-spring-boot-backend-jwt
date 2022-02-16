@@ -1,3 +1,7 @@
+The example of React (CRA) app used as a frontend part for Spring backend app (https://github.com/AndriiMaliuta/kotlin-jwt)
+
+-----------------------------------
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
